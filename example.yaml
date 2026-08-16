@@ -1,0 +1,90 @@
+external_components:
+  - source: github://Nguyenhoang823/pipsolar@main
+    refresh: 5min
+
+pipsolar:
+  - uart_id: uart_bus
+    id: effekta_ax
+
+select:
+  - platform: pipsolar
+    pipsolar_id: effekta_ax
+    current_max_charging_current:
+      name: "Sạc PV"
+      entity_category: config
+      optionsmap:
+        "10A": "MNCHGC0010"
+        "20A": "MNCHGC0020"
+        "30A": "MNCHGC0030"
+        "40A": "MNCHGC0040"
+        "50A": "MNCHGC0050"
+        "60A": "MNCHGC0060"
+        "70A": "MNCHGC0070"
+        "80A": "MNCHGC0080"
+        "90A": "MNCHGC0090"
+        "100A": "MNCHGC0100"
+        "110A": "MNCHGC0110"
+      statusmap:
+        "10": "10A"
+        "20": "20A"
+        "30": "30A"
+        "40": "40A"
+        "50": "50A"
+        "60": "60A"
+        "70": "70A"
+        "80": "80A"
+        "90": "90A"
+        "100": "100A"
+        "110": "110A"
+
+
+# Editable 24 V battery voltage settings.
+number:
+  - platform: pipsolar
+    pipsolar_id: effekta_ax
+    battery_bulk_voltage:
+      name: "Battery Bulk Voltage"
+      min_value: 24.0
+      max_value: 29.2
+      step: 0.1
+      mode: box
+    battery_recharge_voltage:
+      name: "Battery Recharge Voltage"
+      min_value: 22.0
+      max_value: 25.5
+      step: 0.5
+      mode: box
+    battery_under_voltage:
+      name: "Battery Under Voltage"
+      min_value: 20.0
+      max_value: 24.0
+      step: 0.1
+      mode: box
+    battery_float_voltage:
+      name: "Battery Float Voltage"
+      min_value: 24.0
+      max_value: 29.2
+      step: 0.1
+      mode: box
+    battery_redischarge_voltage:
+      name: "Battery Redischarge Voltage"
+      min_value: 24.0
+      max_value: 29.0
+      step: 0.5
+      mode: box
+
+# 24 V battery voltage dropdowns
+select:
+  - platform: pipsolar
+    pipsolar_id: effekta_ax
+
+    battery_bulk_voltage_select:
+      name: "Pin - Điện áp lưu trữ"
+    battery_recharge_voltage_select:
+      name: "Pin - Điện áp sạc lại"
+    battery_under_voltage_select:
+      name: "Pin - Điện áp ngắt"
+    battery_float_voltage_select:
+      name: "Pin - Điện áp Float"
+    battery_redischarge_voltage_select:
+      name: "Pin - Điện áp Redischarge"
